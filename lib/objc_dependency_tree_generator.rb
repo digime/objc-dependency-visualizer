@@ -124,9 +124,10 @@ class DependencyTreeGenerator
     update_tree_block = lambda { |source, target| tree.add(source, target) } 
     if @options[:swift_dependencies]
       SwiftDependenciesGenerator.new.generate_dependencies(@object_files_directories, &update_tree_block)
-    else
-      ObjcDependenciesGenerator.new.generate_dependencies(@object_files_directories, @options[:use_dwarf], &update_tree_block)
     end
+    
+    ObjcDependenciesGenerator.new.generate_dependencies(@object_files_directories, @options[:use_dwarf], &update_tree_block)
+    
     tree
   end  
 
